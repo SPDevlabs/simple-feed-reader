@@ -47,3 +47,16 @@ https://john.hansen@spdevlabs.onmicrosoft.com@spdevlabssimplefeedreader.scm.azur
 PS /home/john>
 
 http://spdevlabssimplefeedreader.azurewebsites.net
+
+
+# Sign in to the Azure Cloud Shell, if not already signed in. https://shell.azure.com/bash
+# 2. Create the staging slot.
+# a. Create a deployment slot with the name staging.
+$webappname="spdevlabssimplefeedreader"
+az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
+# b. Configure the staging slot to use deployment from local Git and get the staging deployment URL. Note this URL for reference later.
+echo Git deployment URL for staging: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --slot staging --query url --output tsv)
+# c. Display the staging slot’s URL. Browse to the URL to see the empty staging slot. Note this URL for reference later.
+echo Staging web app URL: http://$webappname-staging.azurewebsites.net
+
+https://spdevlabssimplefeedreader-stagingc.azurewebsites.net
